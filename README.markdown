@@ -1,7 +1,6 @@
 j_ku
 ====
 **j_ku** is a javascript DSL that allows you to create new DOM nodes as a [jQuery](http://jquery.com) object in a nice and readable way using **CSS selector** syntax.
-
 Some the goal is trying to convey a sense of hierarchy and make it easy to write code in a way that represents the nested structure of the nodes it creates.
 
 I just love so much writing html using [HAML](http://haml.hamptoncatlin.com/) that I had to work the same way with javascript and jQuery. 
@@ -16,13 +15,13 @@ The function you pass to $.j_ku will be used as instructions to create the jquer
 
 Tag Syntax
 ----------
-So, how the DSL syntax work, then?
-
-The t function creates a tag, the first argument you pass defines what kind of tag using CSS selector syntax, so it's pretty easy to add classes and id:
+How the DSL syntax work, then?
+The **t** function creates a tag, the first argument you pass defines what kind of tag using CSS selector syntax, so it's pretty easy to add classes and id:
 
 	t("p.description#intro")
 
-You can add attributes and text inside the tag passing an object literal containing the attributes name and value.
+You can add attributes to the tag passing an object literal containing the attributes name and value.
+Pass a string at the end to place it as content for the tag.
 
 	$.j_ku(function() {with(this){
 		t("a",{href:"http://example.com"},"Link to example")
@@ -39,7 +38,7 @@ Okay: it doesn't look great if you want to create a hyperlink; but what about so
 		t('h1',"Why do I want a DSL to create jQuery objects?")
 		t('div.reasons')
 		._t('p',"It's petty easy to nest one tag inside the other using chains.")
-		._t('p',"Nesting is useful, but adding sibling nodes easily is great, plus:")
+		._t('p',"Nesting is useful, but adding sibling nodes easily is great too; plus:")
 		._t('ul')
 		.__t('li',"You can nest tags into tags as much as you want")
 		 ._t('li',"And you can always add more tags next to the previous")
@@ -55,7 +54,7 @@ Will create a jquery object with the following html:
 	    It's petty easy to nest one tag inside the other using chains.
 	  </p>
 	  <p>
-	    Nesting is useful, but adding sibling nodes easily is great, plus:
+	    Nesting is useful, but adding sibling nodes easily is great too, plus:
 	  </p>
 	  <ul>
 	    <li>You can nest tags into tags as much as you want</li>
@@ -79,7 +78,7 @@ How do you do it?
 
 Other Advantages
 ----------------
-Other than looking ok it's very easy to have content for the tags generated on the fly, just pass a function call to **t**.
+Other than being pretty readable it's very easy for your code to have the content for the tags generated on the fly: just pass a function call to **t**.
 
 When called this will return the current time placed into the h2 tag, after a title within a div:
 
@@ -93,18 +92,17 @@ What you write in the function you pass to j_ku is still javascript so you can d
 
 A simple example is iterating over an array to populate a list:
 
-$.j_ku(function() {with(this){
-	var list = ["milk", "eggs", "ham"]
-	var list_node = t('ul')
-	for (i in list){
-		list_node._t("li","get more "+list[i])
-	}
-}})
+	$.j_ku(function() {with(this){
+		var list = ["milk", "eggs", "ham"]
+		var list_node = t('ul')
+		for (i in list){
+			list_node._t("li","get more "+list[i])
+		}
+	}})
 
 Using it as a template
 ----------------------
 You can use j_ku not only to create a jquery object formatted as you specify in your code, but you can have it return a function that uses the argument you pass to build a jquery object every time it is called.
-
 Just refer to the object passed to your template as data() when you write it.
 
 	var authorTemplate = $.j_ku(function() {with(this){
