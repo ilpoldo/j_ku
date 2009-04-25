@@ -108,7 +108,7 @@ Just refer to the object passed to your template as data() when you write it.
 	var authorTemplate = $.j_ku(function() {with(this){
 		t('div#author-profile')
 		._t('div.picture')
-			.__('img',{src:data.pictureUrl,alt:("a photo of " + data().name)})
+		 ._t('img',{src:data.pictureUrl,alt:("a photo of " + data().name)})
 		._t('div.details')
 		.__t('h1.name',data().name)
 		 ._t('h2.status',data().status)
