@@ -1,8 +1,7 @@
 /*
-
-* j_ku - a DSL for making straight jQuery DOM elements or factories/templates that make them.
+* j_ku - a DSL for making straight jQuery DOM elements or templates that make them.
 * 
-* http://leandropedroni.com/projects/j_ku
+* http://github.com/ilpoldo/j_ku
 *
 * Copyright (c) 2009 Leandro Pedroni
 * Licensed under the MIT (MIT-LICENSE.txt)
@@ -22,6 +21,9 @@ $.j_ku(function() {with(this){
   ._t('li', ["And a list", "of things", "after", "the paragraph"])
   // an easy rule to remember this mess is that "._t" is the only one tht doesn't change indentation
 }})
+
+Will return this kind of jquery object:
+['h1','ul','div']
 
 */
 
@@ -83,7 +85,7 @@ jQuery.j_ku.Methods = {
         node = this.makeTag(tag,attr,content)
         this.store.append(node)
         result = new this.verse(node)
-        result.t = function(){throw ".t goes up one node, but you are already at the topmost level. don't chain like this \"t().t()\""}
+        result.t = function(){throw "Chaining .t goes up one node, but you are already at the topmost level. don't chain like this \"t().t()\""}
         return result
     },
     verse: function(upper, sibling){
