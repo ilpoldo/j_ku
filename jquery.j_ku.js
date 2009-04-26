@@ -5,8 +5,7 @@
 * http://leandropedroni.com/projects/j_ku
 *
 * Copyright (c) 2009 Leandro Pedroni
-* Dual licensed under the MIT (MIT-LICENSE.txt)
-* and GPL (GPL-LICENSE.txt) licenses.
+* Licensed under the MIT (MIT-LICENSE.txt)
 
 Syntax:
 

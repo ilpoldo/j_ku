@@ -11,11 +11,12 @@
     return $('<div>').append(jQ_object.clone()).remove().html();
   }
   
-  $(document).ready(function(){
+  function runTests(){
     $.getScript('test_selector_and_nesting.js')
     $.getScript('test_metaprogramming_and_factoryness.js')
-    //$.getScript('test_example.js')
-  });
+  }
+  
+  $(document).ready(runTests());
   </script>
   
 </head>
@@ -24,6 +25,8 @@
 <script type="text/javascript" src="testrunner.js"></script>
  <h1>j_ku test</h1>
  <h2 id="banner"></h2>
+ <!-- TODO: Write a script that loads the minified version of the plugin instead -->
+ <h2><a href='#minified'>Test the minified version</a>, build one using: <span>compressor/compress.sh</span></h2>
  <h2 id="userAgent"></h2>
 
  <ol id="tests"></ol>
