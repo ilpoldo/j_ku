@@ -130,5 +130,3 @@ Tests
 The plugin comes with tests, I ran them on Safari(v4b) and Firefox(v3), but I could use some help on a couple of things:
 
 * if someone can check them in IE I'd love to hear about it.
-
-* j_ku fails a few tests. Most of the tests are about matching the resulting html of the jquery object that the function returns; but a few tests like that fail even though the html strings are the same. I'm really interested in finding a better way to test this.

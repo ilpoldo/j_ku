@@ -8,7 +8,8 @@
   <script type="text/javascript" src="../jquery.j_ku.js"></script>
   <script>
   function htmlof(jQ_object){
-    return $('<div>').append(jQ_object.clone()).remove().html();
+    var html_sting = ''+$('<div>').append(jQ_object.clone()).remove().html()
+    return html_sting;
   }
 
   function runTests(){
