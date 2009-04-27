@@ -68,12 +68,12 @@ jQuery.j_ku.Poem = function() {
 jQuery.j_ku.Methods = {
     makeTag: function(tag,attrs,content){
       if (content === undefined && typeof(attrs) == "string") { content = attrs; attrs = undefined;}
-      var tag_name = /^([\w-]+)/.exec(tag);
+      var tag_name = /^([\w\-]+)/.exec(tag);
       tag_name = tag_name || ["","div"];
       var result = jQuery("<"+tag_name[1]+"/>");
-      var tag_id = /(?:#([\w-]+)?)/.exec(tag);
+      var tag_id = /(?:#([\w\-]+)?)/.exec(tag);
       if (tag_id) {result.attr('id',tag_id[1]);}
-      var tag_classes = tag.replace(/^([\w-]+)/,"").replace(/[#][\w-]*/,"").replace(/\./g," ");
+      var tag_classes = tag.replace(/^([\w\-]+)/,"").replace(/[#][\w\-]*/,"").replace(/\./g," ");
       if (tag_classes) {
         result.addClass(tag_classes);
       }
