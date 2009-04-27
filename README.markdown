@@ -102,7 +102,7 @@ A simple example is iterating over an array to populate a list:
 
 Using it as a template
 ----------------------
-You can use j_ku not only to create a jquery object formatted as you specify in your code, but you can have it return a function that uses the argument you pass to build a jquery object every time it is called.
+J_ku can do more than run your template and return a jquery object. j_ku can return a reusable template too: a function that uses the argument you pass to build a jquery object every time it is called.
 Just refer to the object passed to your template as data() when you write it.
 
 	var authorTemplate = $.j_ku(function() {with(this){
