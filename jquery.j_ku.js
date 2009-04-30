@@ -1,5 +1,5 @@
 /*
-* j_ku - a DSL for making straight jQuery DOM elements or templates that make them.
+* j_ku - a DSL for making straight jQuery DOM elements or templates that make them. Inspired by HAML.
 * 
 * http://github.com/ilpoldo/j_ku
 *
