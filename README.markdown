@@ -9,9 +9,9 @@ Usage
 -----
 The function you pass to $.j_ku will be used as instructions to create the jquery objects for the DOM nodes you want to create in the structure you prefer. The $.j_ku function will return them as a jquery object, ready to be manipulated and eventually appended into the document.
 
-	$.j_ku(function() {with(this){
+	$.j_ku(function() {
 		// Make your objects in here with the j_ku dsl
-	}})
+	})
 
 Tag Syntax
 ----------
@@ -23,9 +23,9 @@ The **t** function creates a tag, the first argument you pass defines what kind 
 You can add attributes to the tag passing an object literal containing the attributes name and value.
 Pass a string at the end to place it as content for the tag.
 
-	$.j_ku(function() {with(this){
+	$.j_ku(function() {
 		t("a",{href:"http://example.com"},"Link to example")
-	}})
+	})
 	
 	//will create the same as: 
 	jQuery('<a href="http://example.com">Link to example</a>')
@@ -34,7 +34,7 @@ Hierarchy Syntax
 ----------------
 Okay: it doesn't look great if you want to create a hyperlink; but what about something with a bit more structure to it?
 
-	$.j_ku(function() {with(this){
+	$.j_ku(function() {
 		t('h1',"Why do I want a DSL to create jQuery objects?")
 		t('div.reasons')
 		._t('p',"It's petty easy to nest one tag inside the other using chains.")
@@ -44,7 +44,7 @@ Okay: it doesn't look great if you want to create a hyperlink; but what about so
 		 ._t('li',"And you can always add more tags next to the previous")
 		 .t('p',"You can also climb back up one level")
 		t('h5',"Not convinced yet? There's more...")
-	}})
+	})
 
 Will create a jquery object with the following html:
 
@@ -82,30 +82,30 @@ Other than being pretty readable it's very easy for your code to have the conten
 
 When called this will return the current time placed into the h2 tag, after a title within a div:
 
-	$.j_ku(function() {with(this){
+	$.j_ku(function() {
 		t('div.time')
 		._t("h1","The time now is:")
 		._t("h2",Date())
-	}})
+	})
 
 What you write in the function you pass to j_ku is still javascript so you can do a lot more than creating a bunch of nested tags.
 
 A simple example is iterating over an array to populate a list:
 
-	$.j_ku(function() {with(this){
+	$.j_ku(function() {
 		var list = ["milk", "eggs", "ham"]
 		var list_node = t('ul')
 		for (i in list){
 			list_node._t("li","get more "+list[i])
 		}
-	}})
+	})
 
 Using it as a template
 ----------------------
 J_ku can do more than run your template and return a jquery object. j_ku can return a reusable template too: a function that uses the argument you pass to build a jquery object every time it is called.
 Just refer to the object passed to your template as data() when you write it.
 
-	var authorTemplate = $.j_ku(function() {with(this){
+	var authorTemplate = $.j_ku(function() {
 		t('div#author-profile')
 		._t('div.picture')
 		 ._t('img',{src:data.pictureUrl,alt:("a photo of " + data().name)})
@@ -113,7 +113,7 @@ Just refer to the object passed to your template as data() when you write it.
 		.__t('h1.name',data().name)
 		 ._t('h2.status',data().status)
 		 ._t('p',data().blurb)
-	}})
+	})
 
 Now you can reuse the same template every object you pass to _authorTemplate_, and receive back your formatted content as a jquery object.
 

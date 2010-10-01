@@ -3,12 +3,12 @@
 * 
 * http://github.com/ilpoldo/j_ku
 *
-* Copyright (c) 2009 Leandro Pedroni
+* Copyright (c) 2010 Leandro Pedroni
 * Licensed under the MIT (MIT-LICENSE.txt)
 
 Syntax:
 
-$.j_ku(function() {with(this){
+$.j_ku(function() {
   t('h1.catchy-title',"Here comes a DSL to create jQuery objects")
   t('ul')
   ._t('li',"Content 1")
@@ -20,7 +20,7 @@ $.j_ku(function() {with(this){
    .t('ul')
   ._t('li', ["And a list", "of things", "after", "the paragraph"])
   // an easy rule to remember this mess is that "._t" is the only one tht doesn't change indentation
-}})
+})
 
 Will return this kind of jquery object:
 ['h1','ul','div']
@@ -30,14 +30,15 @@ Will return this kind of jquery object:
 jQuery.j_ku = function(rules) {
     var poem = jQuery.j_ku.Poem();
     try {
-      rules.apply(poem);
+      //rules.call(poem); //metapogramming bit
+      poem.bound(rules)();
       return poem.verses();
     } catch(e) {
       if (e!="This poem is a template") {throw e;}
       var factory_of_verses = function(data_input){
         var poem = jQuery.j_ku.Poem();
         poem.data = function(){return data_input;};
-        rules.apply(poem);
+        poem.bound(rules)(); //metapogramming bit
         return poem.verses();
       };
       return factory_of_verses;
@@ -51,7 +52,7 @@ jQuery.j_ku.Poem = function() {
     html:function(){return this.store.html();}
   };
   instanceStore.store = jQuery('<div/>');
-  function F(){}
+  function F(){};
   F.prototype = instanceStore;
 
   var result = new F();
@@ -61,6 +62,11 @@ jQuery.j_ku.Poem = function() {
     if (jQuery.j_ku.Methods.hasOwnProperty(attr)){
       result[attr] = jQuery.j_ku.Methods[attr];
     }
+  }
+  result.bound = function(code){
+    var body = '(' + code.toString().replace(/\s+$/, '') + ')()';
+        that = this;
+    return function() { return eval('with(that) { ' + body + ' } '); }
   }
   return result;
 };

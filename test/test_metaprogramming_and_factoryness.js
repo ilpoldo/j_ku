@@ -4,9 +4,9 @@ module("Metafactory");
 test("Metafactory calls the data() function", function() {
 expect(1)
 
-var j_kuFactory = $.j_ku(function() {with(this){
+var j_kuFactory = $.j_ku(function() {
   t('ul', data().errorOut())
-}})
+})
 try {
   j_kuFactory({errorOut:function(){throw "yay"}})
 } catch(e) {
@@ -16,9 +16,9 @@ try {
 
 test("Using the template", function() {
   
-  var j_kuTemplate = $.j_ku(function() {with(this){
+  var j_kuTemplate = $.j_ku(function() {
     t('p', data())
-  }})
+  })
   
   var my_catchphrase = "oi"
   var result = j_kuTemplate(my_catchphrase)
@@ -28,9 +28,9 @@ test("Using the template", function() {
 
 
 test("Fetching external data with the template", function() {
-  var j_kuTemplate = $.j_ku(function() {with(this){
+  var j_kuTemplate = $.j_ku(function() {
     t('p', data())
-  }})
+  })
   
   var source = "a"
   var result = j_kuTemplate(source)
@@ -50,9 +50,9 @@ test("Fetching external data with the template", function() {
 })
 
 test("Calling an object in the template", function() {
-  var j_kuTemplate = $.j_ku(function() {with(this){
+  var j_kuTemplate = $.j_ku(function() {
     t('p', data().count())
-  }})
+  })
   
   //Singleton counter
   var counter = {
